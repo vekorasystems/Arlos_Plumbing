@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arlo's Plumbing & Heating Ltd | Essex, North London, Dartford</title>
+  <meta name="description" content="Expert plumbing, heating, bathroom and kitchen renovation services across Essex, North London and Dartford. Gas Safe registered. 24-hour emergency service available."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0f1b2d;
+      --navy-mid: #162236;
+      --blue: #1a3a5c;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #f8f6f1;
+      --grey: #8a9ab0;
+      --border: rgba(201,168,76,0.2);
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(15,27,45,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      cursor: pointer;
+    }
+    .nav-logo span { color: var(--white); font-weight: 400; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--grey);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 0.65rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); transition: 0.3s; }
+
+    /* ─── PAGES ─── */
+    .page { display: none; min-height: 100vh; }
+    .page.active { display: block; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #0a1520 0%, #0f1b2d 40%, #162236 70%, #1a2d45 100%);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(26,58,92,0.4) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 4rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge::before { content: '●'; font-size: 0.5rem; color: var(--gold); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title .gold { color: var(--gold); }
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--grey);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 0.9rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(248,246,241,0.3);
+      padding: 0.9rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .stat {
+      background: rgba(15,27,45,0.8);
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .stat-label { font-size: 0.7rem; color: var(--grey); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
+
+    /* Hero right — photo mosaic */
+    .hero-visual {
+      position: relative;
+      height: 520px;
+    }
+    .photo-card {
+      position: absolute;
+      border: 2px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-card:nth-child(1) { width: 55%; height: 55%; top: 0; right: 0; }
+    .photo-card:nth-child(2) { width: 42%; height: 45%; bottom: 5%; left: 0; }
+    .photo-card:nth-child(3) { width: 38%; height: 38%; bottom: 15%; right: 5%; }
+    .gas-safe-badge {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--gold);
+      color: var(--navy);
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-align: center;
+      box-shadow: 0 0 0 4px var(--navy), 0 0 0 6px var(--gold);
+      z-index: 5;
+    }
+    .gas-safe-badge .big { font-size: 1rem; }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .section-sub { color: var(--grey); line-height: 1.7; max-width: 560px; }
+    .divider { width: 48px; height: 2px; background: var(--gold); margin: 1.5rem 0; }
+
+    /* ─── SERVICES PAGE ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .service-card {
+      background: var(--navy-mid);
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover { background: rgba(26,58,92,0.4); }
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+    .service-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: var(--white);
+    }
+    .service-desc { font-size: 0.88rem; color: var(--grey); line-height: 1.65; }
+    .service-number {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 900;
+      color: rgba(201,168,76,0.06);
+      line-height: 1;
+    }
+
+    /* ─── GALLERY PAGE ─── */
+    .gallery-filters {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--grey);
+      padding: 0.5rem 1.2rem;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.05);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 1;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: rgba(15,27,45,0.7);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span { font-size: 1.5rem; }
+    .gallery-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.95);
+      display: none; align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+    .lightbox-close {
+      position: absolute; top: 2rem; right: 2rem;
+      background: none; border: 1px solid var(--border);
+      color: var(--white); width: 44px; height: 44px;
+      font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ─── CONTACT PAGE ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+    .contact-info-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+    .contact-icon {
+      width: 44px; height: 44px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-info-item h4 {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .contact-info-item p, .contact-info-item a {
+      font-size: 0.95rem;
+      color: var(--white);
+      text-decoration: none;
+      line-height: 1.5;
+    }
+    .contact-info-item a:hover { color: var(--gold); }
+    .areas-list {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+    .area-tag {
+      background: rgba(201,168,76,0.08);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 0.3rem 0.8rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(248,246,241,0.04);
+      border: 1px solid rgba(248,246,241,0.1);
+      color: var(--white);
+      padding: 0.9rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select { appearance: none; cursor: pointer; }
+    .form-group select option { background: var(--navy); }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-submit {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 1rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      align-self: flex-start;
+      min-width: 180px;
+    }
+    .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .form-msg {
+      padding: 1rem;
+      border: 1px solid;
+      font-size: 0.88rem;
+      display: none;
+    }
+    .form-msg.success { border-color: #4caf50; color: #4caf50; background: rgba(76,175,80,0.05); }
+    .form-msg.error { border-color: #f44336; color: #f44336; background: rgba(244,67,54,0.05); }
+
+    /* ─── REVIEWS ─── */
+    .reviews-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px;
+      background: var(--border); border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .review-card {
+      background: var(--navy-mid);
+      padding: 2rem;
+    }
+    .review-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+    .review-text { font-size: 0.95rem; color: var(--grey); line-height: 1.7; font-style: italic; margin-bottom: 1.2rem; }
+    .review-author { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+
+    /* ─── EMERGENCY BANNER ─── */
+    .emergency-bar {
+      background: var(--gold);
+      color: var(--navy);
+      text-align: center;
+      padding: 0.8rem 2rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .emergency-bar a { color: var(--navy); font-weight: 700; text-decoration: none; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-size: 0.8rem; color: var(--grey); text-decoration: none;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: color 0.2s; cursor: pointer;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.75rem; color: var(--grey); }
+
+    /* ─── ABOUT PAGE ─── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+    .about-img-stack { position: relative; height: 450px; }
+    .about-img-stack .img-main {
+      position: absolute; top: 0; right: 0;
+      width: 80%; height: 85%;
+      border: 2px solid var(--border);
+      overflow: hidden;
+    }
+    .about-img-stack .img-accent {
+      position: absolute; bottom: 0; left: 0;
+      width: 55%; height: 55%;
+      border: 2px solid var(--gold);
+      overflow: hidden;
+    }
+    .about-img-stack img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-gold-box {
+      position: absolute; top: 50%; right: -20px;
+      transform: translateY(-50%);
+      background: var(--gold);
+      color: var(--navy);
+      padding: 1.5rem;
+      text-align: center;
+      width: 110px;
+      z-index: 5;
+    }
+    .about-gold-box .num {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      display: block;
+    }
+    .about-gold-box .lbl {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .features-list { list-style: none; margin-top: 1.5rem; }
+    .features-list li {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+      color: var(--grey);
+    }
+    .features-list li::before {
+      content: '→';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    /* ─── PAGE HERO (sub pages) ─── */
+    .page-hero {
+      padding-top: 140px;
+      padding-bottom: 4rem;
+      padding-left: 4rem;
+      padding-right: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.7s forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up:nth-child(1) { animation-delay: 0.1s; }
+    .fade-up:nth-child(2) { animation-delay: 0.2s; }
+    .fade-up:nth-child(3) { animation-delay: 0.3s; }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 60px; left: 0; right: 0;
+        background: var(--navy); padding: 2rem;
+        gap: 1.5rem; border-bottom: 1px solid var(--border);
+      }
+      .hero-content { grid-template-columns: 1fr; padding: 0 1.5rem; gap: 2rem; }
+      .hero-visual { height: 300px; }
+      .photo-card:nth-child(3) { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .page-hero { padding: 120px 1.5rem 3rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item.wide { grid-column: span 1; aspect-ratio: 1; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img-stack { height: 300px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+      .hero-stats { grid-template-columns: repeat(3,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Emergency bar -->
+<div class="emergency-bar">
+  ⚡ 24-Hour Emergency Service Available — Call Now: <a href="tel:+44000000000">Contact Us</a>
+</div>
+
+<!-- Nav -->
+<nav id="navbar">
+  <div class="nav-logo" onclick="showPage('home')">Arlo's <span>Plumbing & Heating</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+    <li><a onclick="showPage('services')" id="nav-services">Services</a></li>
+    <li><a onclick="showPage('gallery')" id="nav-gallery">Gallery</a></li>
+    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="showPage('contact')">Free Quote</button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ HOME ═══ -->
+<div id="page-home" class="page active">
+  <div id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div>
+        <div class="hero-badge fade-up">Gas Safe Registered ✓</div>
+        <h1 class="hero-title fade-up">
+          Expert Plumbing<br>& <span class="gold">Heating</span><br>You Can Trust
+        </h1>
+        <p class="hero-sub fade-up">Bathroom renovations, boiler installations, emergency repairs and more. Serving Essex, North London and Dartford with over a decade of experience.</p>
+        <div class="hero-buttons fade-up">
+          <button class="btn-primary" onclick="showPage('contact')">Get a Free Quote</button>
+          <button class="btn-outline" onclick="showPage('gallery')">View Our Work</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Years Experience</div></div>
+          <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Emergency Service</div></div>
+          <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Gas Safe</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80" alt="Luxury bathroom renovation"/>
+        </div>
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&q=80" alt="Modern bathroom"/>
+        </div>
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80" alt="Kitchen renovation"/>
+        </div>
+        <div class="gas-safe-badge">
+          <span class="big">GAS</span>
+          <span>SAFE</span>
+          <span>REG.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why choose us strip -->
+  <div style="background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div style="max-width:1200px; margin:0 auto; padding: 3rem 4rem; display:grid; grid-template-columns: repeat(4,1fr); gap: 2rem;">
+      <div style="text-align:center;">
+        <div style="font-size:1.8rem; margin-bottom:0.5rem;">🛡️</div>
+        <div style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:0.3rem;">Fully Insured</div>
+        <div style="font-size:0.82rem; color:var(--grey);">All work fully covered</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:1.8rem; margin-bottom:0.5rem;">⚡</div>
+        <div style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:0.3rem;">Fast Response</div>
+        <div style="font-size:0.82rem; color:var(--grey);">Emergency same-day</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:1.8rem; margin-bottom:0.5rem;">✅</div>
+        <div style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:0.3rem;">Free Consultation</div>
+        <div style="font-size:0.82rem; color:var(--grey);">No obligation quotes</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:1.8rem; margin-bottom:0.5rem;">⭐</div>
+        <div style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:0.3rem;">5-Star Rated</div>
+        <div style="font-size:0.82rem; color:var(--grey);">Verified customer reviews</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured services preview -->
+  <section>
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Complete Plumbing<br>& Heating Solutions</h2>
+    <div class="divider"></div>
+    <p class="section-sub">From emergency repairs to full bathroom renovations — we handle every aspect of plumbing and heating for homes and businesses.</p>
+    <div class="services-grid" style="margin-top:3rem;">
+      <div class="service-card">
+        <span class="service-icon">🛁</span>
+        <div class="service-number">01</div>
+        <div class="service-name">Bathroom Renovations</div>
+        <div class="service-desc">Complete bathroom transformations from concept to finish. We handle everything including tiling, fixtures, and plumbing.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔥</span>
+        <div class="service-number">02</div>
+        <div class="service-name">Boiler Repair & Install</div>
+        <div class="service-desc">Gas Safe registered engineers for all boiler makes and models. Installation, servicing, and emergency repairs.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🍳</span>
+        <div class="service-number">03</div>
+        <div class="service-name">Kitchen Renovations</div>
+        <div class="service-desc">Full kitchen plumbing including sink installation, appliance connections, and pipework for your dream kitchen.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🚿</span>
+        <div class="service-number">04</div>
+        <div class="service-name">Water Heater Services</div>
+        <div class="service-desc">Installation, repair and maintenance of all water heater types. Efficient systems to cut your energy bills.</div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <button class="btn-outline" onclick="showPage('services')">View All Services</button>
+    </div>
+  </section>
+
+  <!-- Reviews preview -->
+  <div style="background: var(--navy-mid); border-top: 1px solid var(--border);">
+    <section>
+      <div class="section-label">Customer Reviews</div>
+      <h2 class="section-title">What Our Clients Say</h2>
+      <div class="divider"></div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Amazing plumber. Had a very big job taking down the tiles and installing a new valve system. The work was completed to an incredibly high standard — couldn't be happier."</p>
+          <div class="review-author">Anonymous — December 2022</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"He was prompt and friendly. Fixed something for me that was causing so much difficulty and stress. Professional from start to finish — would recommend without hesitation."</p>
+          <div class="review-author">Anonymous — April 2022</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CTA Banner -->
+  <div style="background: linear-gradient(135deg, var(--blue), var(--navy-mid)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div style="max-width:1200px; margin:0 auto; padding:4rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem;">
+      <div>
+        <div style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem;">Ready to get started?</div>
+        <h3 style="font-family:var(--font-display); font-size:2rem; font-weight:700;">Get Your Free Quote Today</h3>
+        <p style="color:var(--grey); margin-top:0.5rem; font-size:0.9rem;">No obligation. Same-day response. Competitive pricing.</p>
+      </div>
+      <button class="btn-primary" style="font-size:0.9rem; padding:1rem 2.5rem;" onclick="showPage('contact')">Request a Quote →</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Arlo's Plumbing & Heating Ltd</div>
+    <div class="footer-links">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('services')">Services</a>
+      <a onclick="showPage('gallery')">Gallery</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </div>
+    <div class="footer-copy">© 2025 Arlo's Plumbing & Heating Ltd. All rights reserved.</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════ SERVICES ═══ -->
+<div id="page-services" class="page">
+  <div class="page-hero">
+    <div class="section-label">What We Offer</div>
+    <h1 class="section-title">Our Services</h1>
+    <div class="divider"></div>
+    <p class="section-sub">Residential and commercial plumbing and heating services across Essex, North London and Dartford. All work carried out by Gas Safe registered engineers.</p>
+  </div>
+  <section>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🛁</span>
+        <div class="service-number">01</div>
+        <div class="service-name">Bathroom Renovations</div>
+        <div class="service-desc">Full bathroom transformations. We design, supply and install — from freestanding baths to walk-in showers, bespoke tiling, underfloor heating, and premium fixtures.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🍳</span>
+        <div class="service-number">02</div>
+        <div class="service-name">Kitchen Renovations</div>
+        <div class="service-desc">Complete kitchen plumbing including new sink installation, appliance hookups, full pipework, and waste systems to suit your dream kitchen layout.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔥</span>
+        <div class="service-number">03</div>
+        <div class="service-name">Boiler Repair & Installation</div>
+        <div class="service-desc">Gas Safe registered engineers for all boiler makes and models. We diagnose, repair, service and install — including Vaillant, Worcester Bosch, and Ideal boilers.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🚿</span>
+        <div class="service-number">04</div>
+        <div class="service-name">Water Heater Services</div>
+        <div class="service-desc">Installation, repair and maintenance of water heaters and hot water cylinders. Efficient systems to reduce energy bills and ensure reliable hot water.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💧</span>
+        <div class="service-number">05</div>
+        <div class="service-name">Water Piping Repair & Install</div>
+        <div class="service-desc">Leak detection, pipe replacement, and full pipework installation for new builds and renovations. We work with copper, plastic and specialist pipe systems.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔧</span>
+        <div class="service-number">06</div>
+        <div class="service-name">Leaks & General Repairs</div>
+        <div class="service-desc">Troubleshooting and repair of leaks, blocked drains, faulty taps, running toilets, and sink clogs. Fast response to minimise disruption and water damage.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📊</span>
+        <div class="service-number">07</div>
+        <div class="service-name">Water & Gas Meters</div>
+        <div class="service-desc">Meter installation, relocation, and connection work. We work alongside suppliers to ensure safe, compliant meter setups for residential and commercial properties.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">♨️</span>
+        <div class="service-number">08</div>
+        <div class="service-name">Steam Services</div>
+        <div class="service-desc">Specialist steam system installation and repair for residential steam rooms and commercial applications. Full pressure testing and certification provided.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⚡</span>
+        <div class="service-number">09</div>
+        <div class="service-name">24hr Emergency Callout</div>
+        <div class="service-desc">Burst pipes, boiler breakdowns, severe leaks — we respond fast. Available 24 hours, 7 days a week for genuine plumbing and heating emergencies.</div>
+      </div>
+    </div>
+    <div style="margin-top:3rem; background:var(--navy-mid); border:1px solid var(--border); padding:2.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem;">
+      <div>
+        <div style="font-family:var(--font-display); font-size:1.3rem; font-weight:700; margin-bottom:0.5rem;">Not sure what you need?</div>
+        <div style="color:var(--grey); font-size:0.9rem;">We offer free consultations — we'll diagnose the problem and explain all your options.</div>
+      </div>
+      <button class="btn-primary" onclick="showPage('contact')">Book Free Consultation</button>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-logo">Arlo's Plumbing & Heating Ltd</div>
+    <div class="footer-links">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('services')">Services</a>
+      <a onclick="showPage('gallery')">Gallery</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </div>
+    <div class="footer-copy">© 2025 Arlo's Plumbing & Heating Ltd. All rights reserved.</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════ GALLERY ═══ -->
+<div id="page-gallery" class="page">
+  <div class="page-hero">
+    <div class="section-label">Our Work</div>
+    <h1 class="section-title">Project Gallery</h1>
+    <div class="divider"></div>
+    <p class="section-sub">Every project is completed to the highest standard. Browse our recent bathroom renovations, heating installations, and plumbing work.</p>
+  </div>
+  <section>
+    <div class="gallery-filters">
+      <button class="filter-btn active" onclick="filterGallery('all', this)">All Work</button>
+      <button class="filter-btn" onclick="filterGallery('bathroom', this)">Bathrooms</button>
+      <button class="filter-btn" onclick="filterGallery('heating', this)">Heating</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item wide" data-cat="bathroom" onclick="openLight(this)">
+        <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=80" alt="Luxury bathroom"/>
+        <div class="gallery-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" data-cat="bathroom" onclick="openLight(this)">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="Modern shower room"/>
+        <div class="gallery-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" data-cat="bathroom" onclick="openLight(this)">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" alt="Walk-in shower"/>
+        <div class="gallery-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" data-cat="bathroom" onclick="openLight(this)">
+        <img src="https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=600&q=80" alt="Freestanding bath"/>
+        <div class="gallery-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" data-cat="heating" onclick="openLight(this)">
+        <img src="https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?w=600&q=80" alt="Boiler installation"/>
+        <div class="gallery-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item wide" data-cat="bathroom" onclick="openLight(this)">
+        <img src="https://images.unsplash.com/photo-1620626011761-996317702782?w=900&q=80" alt="Bathroom renovation"/>
+        <div class="gallery-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" data-cat="heating" onclick="openLight(this)">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Heating pipework"/>
+        <div class="gallery-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" data-cat="bathroom" onclick="openLight(this)">
+        <img src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?w=600&q=80" alt="Modern bathroom design"/>
+        <div class="gallery-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" data-cat="bathroom" onclick="openLight(this)">
+        <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?w=600&q=80" alt="Bathroom tiles"/>
+        <div class="gallery-overlay"><span>🔍</span></div>
+      </div>
+    </div>
+    <p style="color:var(--grey); font-size:0.8rem; margin-top:1.5rem; text-align:center;">More photos available on request. Contact us to discuss your project.</p>
+  </section>
+  <footer>
+    <div class="footer-logo">Arlo's Plumbing & Heating Ltd</div>
+    <div class="footer-links">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('services')">Services</a>
+      <a onclick="showPage('gallery')">Gallery</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </div>
+    <div class="footer-copy">© 2025 Arlo's Plumbing & Heating Ltd. All rights reserved.</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════ ABOUT ═══ -->
+<div id="page-about" class="page">
+  <div class="page-hero">
+    <div class="section-label">Who We Are</div>
+    <h1 class="section-title">About Arlo's<br>Plumbing & Heating</h1>
+    <div class="divider"></div>
+  </div>
+  <section>
+    <div class="about-grid">
+      <div class="about-img-stack">
+        <div class="img-main">
+          <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=700&q=80" alt="Arlo plumbing work"/>
+        </div>
+        <div class="img-accent">
+          <img src="https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?w=400&q=80" alt="Heating work"/>
+        </div>
+        <div class="about-gold-box">
+          <span class="num">10+</span>
+          <span class="lbl">Years of Service</span>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title" style="font-size:2rem;">Reliable Professionals<br>You Can Count On</h2>
+        <div class="divider"></div>
+        <p style="color:var(--grey); line-height:1.8; margin-bottom:1rem; font-size:0.95rem;">Whether you need a simple faucet installation, a complete bathroom renovation, or kitchen renovation, we offer a wide range of residential and commercial plumbing services to meet your needs.</p>
+        <p style="color:var(--grey); line-height:1.8; font-size:0.95rem;">We specialise in water heater installation and continually strive to exceed expectations by ensuring that each client receives the very best service. We'll provide a free consultation to explain all your available options so you can choose what's right for your home or business.</p>
+        <ul class="features-list">
+          <li>Gas Safe registered — all work certified and compliant</li>
+          <li>Free consultations with no-obligation quotes</li>
+          <li>24-hour emergency service available</li>
+          <li>Residential and commercial work undertaken</li>
+          <li>Warranty provided on all completed work</li>
+          <li>Serving Essex, North London and Dartford</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <div style="background:var(--navy-mid); border-top:1px solid var(--border);">
+    <section>
+      <div class="section-label">Areas We Cover</div>
+      <h2 class="section-title">Our Service Areas</h2>
+      <div class="divider"></div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1rem;">
+        <div class="area-tag" style="padding:1rem 1.5rem; font-size:0.9rem;">📍 Essex</div>
+        <div class="area-tag" style="padding:1rem 1.5rem; font-size:0.9rem;">📍 North London</div>
+        <div class="area-tag" style="padding:1rem 1.5rem; font-size:0.9rem;">📍 Dartford</div>
+      </div>
+      <p style="color:var(--grey); margin-top:1.5rem; font-size:0.9rem;">Not sure if we cover your area? Get in touch and we'll let you know.</p>
+    </section>
+  </div>
+  <footer>
+    <div class="footer-logo">Arlo's Plumbing & Heating Ltd</div>
+    <div class="footer-links">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('services')">Services</a>
+      <a onclick="showPage('gallery')">Gallery</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </div>
+    <div class="footer-copy">© 2025 Arlo's Plumbing & Heating Ltd. All rights reserved.</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════ CONTACT ═══ -->
+<div id="page-contact" class="page">
+  <div class="page-hero">
+    <div class="section-label">Get In Touch</div>
+    <h1 class="section-title">Request a Free Quote</h1>
+    <div class="divider"></div>
+    <p class="section-sub">Fill in the form and we'll get back to you within a few hours. For emergencies, call us directly — we're available 24/7.</p>
+  </div>
+  <section>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Phone</h4>
+            <a href="tel:+44000000000">Add phone number here</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:info@arlosplumbing.co.uk">info@arlosplumbing.co.uk</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">⏰</div>
+          <div>
+            <h4>Hours</h4>
+            <p>Mon–Fri: 7am–7pm<br>Sat: 8am–5pm<br>Emergency: 24/7</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Areas Served</h4>
+            <div class="areas-list">
+              <span class="area-tag">Essex</span>
+              <span class="area-tag">North London</span>
+              <span class="area-tag">Dartford</span>
+            </div>
+          </div>
+        </div>
+        <div style="background:rgba(201,168,76,0.08); border:1px solid var(--border); padding:1.5rem; margin-top:1rem;">
+          <div style="font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">⚡ Emergency?</div>
+          <p style="font-size:0.88rem; color:var(--grey); line-height:1.6;">For urgent plumbing or heating emergencies, call us directly. We're available 24 hours a day, 7 days a week.</p>
+        </div>
+      </div>
+
+      <div>
+        <form class="contact-form" id="contactForm" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name *</label>
+              <input type="text" name="firstName" required placeholder="John"/>
+            </div>
+            <div class="form-group">
+              <label>Last Name *</label>
+              <input type="text" name="lastName" required placeholder="Smith"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email *</label>
+              <input type="email" name="email" required placeholder="john@example.com"/>
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" name="phone" placeholder="07700 000000"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" name="address" placeholder="Street, City, Postcode"/>
+          </div>
+          <div class="form-group">
+            <label>Service Required *</label>
+            <select name="service" required>
+              <option value="" disabled selected>Select a service...</option>
+              <option>Bathroom Renovation</option>
+              <option>Kitchen Renovation</option>
+              <option>Boiler Repair / Installation</option>
+              <option>Water Heater Services</option>
+              <option>Emergency Plumbing</option>
+              <option>Leak / General Repair</option>
+              <option>Water / Gas Meter</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell us about your project *</label>
+            <textarea name="message" required placeholder="Describe your project or issue in as much detail as possible..."></textarea>
+          </div>
+          <div class="form-msg" id="formMsg"></div>
+          <button type="submit" class="form-submit" id="submitBtn">Send Message →</button>
+          <p style="font-size:0.75rem; color:var(--grey); margin-top:0.5rem;">We typically respond within a few hours during business hours.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-logo">Arlo's Plumbing & Heating Ltd</div>
+    <div class="footer-links">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('services')">Services</a>
+      <a onclick="showPage('gallery')">Gallery</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </div>
+    <div class="footer-copy">© 2025 Arlo's Plumbing & Heating Ltd. All rights reserved.</div>
+  </footer>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLight()">
+  <button class="lightbox-close" onclick="closeLight()">✕</button>
+  <img id="lightboxImg" src="" alt=""/>
+</div>
+
+<script>
+  // ─── PAGE ROUTING ───
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    const navEl = document.getElementById('nav-' + name);
+    if (navEl) navEl.classList.add('active');
+    window.scrollTo(0, 0);
+    // close mobile menu
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  // ─── MOBILE MENU ───
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // ─── GALLERY FILTER ───
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // ─── LIGHTBOX ───
+  function openLight(el) {
+    const img = el.querySelector('img');
+    document.getElementById('lightboxImg').src = img.src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLight() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLight(); });
+
+  // ─── CONTACT FORM (Formspree) ───
+  async function submitForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('formMsg');
+    const form = document.getElementById('contactForm');
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    msg.style.display = 'none';
+
+    const data = new FormData(form);
+    const body = {
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      email: data.get('email'),
+      phone: data.get('phone'),
+      address: data.get('address'),
+      service: data.get('service'),
+      message: data.get('message'),
+    };
+
+    try {
+      // Replace YOUR_FORMSPREE_ID below with your actual Formspree form ID
+      const res = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      if (res.ok) {
+        msg.className = 'form-msg success';
+        msg.textContent = '✓ Message sent! We\'ll be in touch within a few hours.';
+        msg.style.display = 'block';
+        form.reset();
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch(err) {
+      msg.className = 'form-msg error';
+      msg.textContent = '✕ Something went wrong. Please email us directly or call.';
+      msg.style.display = 'block';
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Send Message →';
+  }
+</script>
+</body>
+</html>
